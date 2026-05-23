@@ -1,0 +1,23 @@
+{
+  "name": "frontend-geo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@deck.gl/core": "^9.3.2",
+    "@deck.gl/google-maps": "^9.3.2",
+    "@deck.gl/layers": "^9.3.2",
+    "@googlemaps/js-api-loader": "^2.0.2",
+    "@turf/turf": "^7.3.5",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "vite": "^8.0.12"
+  }
+}
