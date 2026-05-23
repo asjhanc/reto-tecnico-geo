@@ -2,7 +2,7 @@
 
 ¡Hola! Presento mi solución al reto técnico. El objetivo principal fue construir una herramienta administrativa capaz de gestionar y segmentar más de 18,000 puntos de venta geolocalizados, garantizando una experiencia de usuario fluida (60 FPS), cálculos espaciales precisos y una interfaz moderna.
 
-🔗 **Demo en Vivo:** [https://tu-enlace-de-vercel.vercel.app](https://tu-enlace-de-vercel.vercel.app)
+🔗 **Demo en Vivo:** [https://reto-tecnico-geo.vercel.app/](https://reto-tecnico-geo.vercel.app/)
 
 ---
 
