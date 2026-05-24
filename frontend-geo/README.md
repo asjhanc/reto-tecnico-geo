@@ -1,6 +1,6 @@
 # Reto Técnico: Plataforma de Optimización y Análisis Geoespacial
 
-¡Hola! Presento mi solución al reto técnico. El objetivo principal fue construir una herramienta administrativa capaz de gestionar y segmentar más de 18,000 puntos de venta geolocalizados, garantizando una experiencia de usuario fluida (60 FPS), cálculos espaciales precisos y una interfaz moderna.
+Mi solución al reto técnico. El objetivo principal fue construir una herramienta administrativa capaz de gestionar y segmentar más de 18,000 puntos de venta geolocalizados, garantizando una experiencia de usuario fluida (60 FPS), cálculos espaciales precisos y una interfaz moderna.
 
 🔗 **Demo en Vivo:** [https://reto-tecnico-geo.vercel.app/](https://reto-tecnico-geo.vercel.app/)
 
@@ -12,17 +12,17 @@ Para procesar y visualizar 18,763 puntos sin experimentar "lag" al hacer zoom o 
 
 1. **Renderizado por Hardware (GPU):** Descarté por completo el uso de marcadores nativos del DOM (como los de Google Maps API tradicional), ya que el navegador colapsaría al intentar renderizar tantos nodos. En su lugar, utilicé **WebGL** para compilar los puntos en una sola capa gráfica acelerada por la tarjeta de video.
 2. **Web Workers para Procesamiento en Paralelo:** La agrupación de clientes, el cálculo de envolventes (polígonos) y la validación `Point-in-Polygon` son operaciones de CPU intensivas. Decidí aislar toda esta lógica algorítmica dentro de un **Web Worker**. Esto permite que, mientras la matemática pesada ocurre en segundo plano, la UI se mantenga 100% interactiva, mostrando animaciones de carga sin bloquear el Event Loop.
-3. **Pipeline de Datos (Bonus):** Para no saturar el frontend con lógica de parseo de Excel, desarrollé scripts auxiliares en Python (usando `pandas`) para migrar la data a PostgreSQL y exportar limpiamente un archivo `geojson` ultraligero y un `vendedores.json` estructurado.
+3. **Pipeline de Datos:** Para no saturar el frontend con lógica de parseo de Excel, desarrollé scripts auxiliares en Python (usando `pandas`) para migrar la data a PostgreSQL y exportar limpiamente un archivo `geojson` ultraligero y un `vendedores.json` estructurado.
 
 ---
 
 ## 2. Librerías externas y justificación de arquitectura
 
-Mi pila tecnológica fue elegida cuidadosamente para cumplir con los estándares modernos (ES6+) y la eficiencia exigida:
+Las librerías externas elegidas fueron cuidadosamente seleccionadas para cumplir con los estándares modernos (ES6+) y la eficiencia exigida:
 
 * **Vue 3 (Vite + Composition API):** Lo elegí por su sistema de reactividad basado en Proxies, que es extremadamente rápido. Además, Vite ofrece tiempos de compilación casi instantáneos, mejorando enormemente la experiencia de desarrollo.
-* **Deck.gl (`@deck.gl/google-maps`, `@deck.gl/layers`):** Es el estándar de la industria (creado por Uber) para la visualización de grandes volúmenes de datos espaciales. Me permitió superponer los puntos y polígonos directamente sobre el lienzo de Google Maps mediante renderizado GPU, logrando los 60 FPS deseados.
-* **Turf.js (`@turf/turf`):** Fundamental para la lógica geoespacial. Lo utilicé para:
+* **Deck.gl (`@deck.gl/google-maps`, `@deck.gl/layers`):** Es el estándar para la visualización de grandes volúmenes de datos espaciales. Permitió superponer los puntos y polígonos directamente sobre el lienzo de Google Maps mediante renderizado GPU, logrando los 60 FPS deseados.
+* **Turf.js (`@turf/turf`):** Fundamental para la lógica geoespacial. Se utilizó para:
   * Generar el anillo de búsqueda de 3km (`turf.circle`).
   * Calcular los límites exactos de cámara para hacer zoom inteligente (`turf.bbox`).
   * Calcular envolventes convexas para los territorios (`turf.convex`).
@@ -51,4 +51,4 @@ Si la empresa crece y la base de datos pasa de 18k a 500k puntos, la arquitectur
 ## 5. Experiencia de Usuario (UX/UI) y Uso de IA
 
 * **Diseño Visual:** Se aplicó un diseño limpio inspirado en tendencias modernas (*Glassmorphism*), con paneles flotantes, sombras suaves y una paleta de colores vibrantes para facilitar la legibilidad de la data financiera y territorial. Se previno la "pérdida de contexto" manteniendo el radio azul visible incluso al generar subdivisiones internas.
-* **Integración de IA:** Cumpliendo con los criterios de evaluación modernos, se utilizó IA (como LLMs) a modo de *Pair Programming* para optimizar ciclos de iteración, refactorizar funciones algorítmicas repetitivas y depurar el pase de datos reactivos complejos hacia el contexto aislado del Web Worker.
+* **Integración de IA:** Cumpliendo con los criterios de evaluación modernos, se utilizó IA a modo de *Pair Programming* para optimizar ciclos de iteración, refactorizar funciones algorítmicas repetitivas y depurar el pase de datos reactivos complejos hacia el contexto aislado del Web Worker.

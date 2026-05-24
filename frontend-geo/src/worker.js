@@ -15,7 +15,6 @@ self.onmessage = function (e) {
     const polygons = [];
     const puntosYaAsignados = new Set();
 
-    // 🔥 NUEVO ALGORITMO: Bucle estricto. Garantiza 1 polígono por vendedor.
     for (let i = 0; i < numVendedores; i++) {
 
         // 1. Obtener solo los puntos que NINGÚN vendedor haya tomado aún
@@ -92,9 +91,9 @@ self.onmessage = function (e) {
 
             // Llenamos las propiedades para el Panel Lateral
             poly.properties = {
-                vendedor_codigo: v.id || (i + 1),       // Enviamos el número/código
-                vendedor_nombre: v.nombre_vendedor,     // Enviamos el nombre
-                color: [...colorRGB, 80], // Relleno semitransparente
+                vendedor_codigo: v.id || (i + 1),
+                vendedor_nombre: v.nombre_vendedor,
+                color: [...colorRGB, 80],
                 cantidad_puntos: ptsInside.features.length,
                 monto_total: montoTotal,
                 clientes: clientesDetalle
